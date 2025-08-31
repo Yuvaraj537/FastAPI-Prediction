@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Prophet Bitcoin Forecaster</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="/static/style.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="container">
+    <h1>📈 Prophet Bitcoin Forecaster</h1>
+    <p class="muted">
+       log-transform, train Prophet, forecast,
+      inverse transform, plot results.
+    </p>
+
+    <form class="card" action="/train-forecast" method="post" enctype="multipart/form-data">
+      <div class="field">
+        <label>CSV file</label>
+        <input type="file" name="file" accept=".csv" />
+      </div>
+      <div class="row">
+        <div class="field">
+          <label>Periods</label>
+          <input type="number" name="periods" value="{{ periods or 12 }}" min="1" />
+        </div>
+        <div class="field">
+          <label>Frequency</label>
+          <select name="freq">
+            <option value="D" {{ 'selected' if (freq or 'M')=='D' else '' }}>Daily</option>
+            <option value="W" {{ 'selected' if (freq or 'M')=='W' else '' }}>Weekly</option>
+            <option value="M" {{ 'selected' if (freq or 'M')=='M' else '' }}>Monthly</option>
+          </select>
+        </div>
+      </div>
+      <button type="submit">Train & Forecast</button>
+    </form>
+
+    {% if error %}
+      <div class="error">{{ error }}</div>
+    {% endif %}
+
+    {% if chart_div %}
+      <div class="card">
+        <h2>Actual vs Predicted</h2>
+        {{ chart_div | safe }}
+      </div>
+    {% endif %}
+
+    {% if head_rows %}
+      <div class="card">
+        <h2>Preview (head)</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ds</th><th>y</th><th>yhat</th><th>yhat_lower</th><th>yhat_upper</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for r in head_rows %}
+                <tr>
+                  <td>{{ r['ds'] }}</td>
+                  <td>{{ r['y'] }}</td>
+                  <td>{{ r['yhat'] }}</td>
+                  <td>{{ r['yhat_lower'] }}</td>
+                  <td>{{ r['yhat_upper'] }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if download_href %}
+      <p class="muted">
+         Cleaned forecast saved — <a href="{{ download_href }}">download cleaned_forecast.csv</a><br/>
+      </p>
+    {% endif %}
+      </pre>
+    </div>
+  </div>
+</body>
+</html>
+

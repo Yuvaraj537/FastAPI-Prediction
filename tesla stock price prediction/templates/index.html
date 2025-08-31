@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Next-Day Tesla Price Prediction</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Predict Next-Day Tesla Price</h1>
+        <form action="/predict" method="post">
+            <label for="prices">Enter last 60 closing prices (comma separated):</label>
+            <textarea name="prices" rows="4" placeholder="e.g. 700.5, 702.1, 705.3, ..."></textarea>
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction %}
+            <div class="result">
+                <h2>Predicted Next-Day Price: {{ prediction }}</h2>
+            </div>
+        {% endif %}
+        {% if error %}
+            <div class="error">
+                <p>{{ error }}</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
