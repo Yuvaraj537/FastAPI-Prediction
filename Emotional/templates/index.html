@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Text Classification</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <!-- Intro Section -->
+    <div class="intro-container">
+        <h1 class="heading">🤖 Natural Language Processing</h1>
+        <p>
+            NLP is a field of Artificial Intelligence that helps machines understand, interpret, 
+            and generate human language 
+            
+        </p>
+    </div>
+
+    <!-- Spacer -->
+    <div class="spacer"></div>
+
+    <!-- Main Text Classification Section -->
+    <div class="container">
+        <h1>Text Classification</h1>
+        <textarea id="textInput" name="text" placeholder="Enter text here..." rows="8"></textarea>
+        <button onclick="predictText()">Predict</button>
+
+        <div class="result" id="result" style="display:none;">
+            <h2>Prediction</h2>
+            <p><strong>Major Label:</strong> <span id="majorLabel"></span></p>
+            <p><strong>Sub Label:</strong> <span id="subLabel"></span></p>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        async function predictText() {
+            const text = document.getElementById("textInput").value.trim();
+            if (!text) return;
+
+            try {
+                const response = await fetch("/api/predict", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ text: text })
+                });
+
+                if (!response.ok) {
+                    alert("Error: " + response.statusText);
+                    return;
+                }
+
+                const data = await response.json();
+
+                // Update the prediction results
+                document.getElementById("majorLabel").innerText = data.major_label || "N/A";
+                document.getElementById("subLabel").innerText = data.sub_label || "N/A";
+                document.getElementById("result").style.display = "block";
+
+            } catch (error) {
+                console.error("Error:", error);
+                alert("An error occurred. Check console for details.");
+            }
+        }
+    </script>
+</body>
+</html>

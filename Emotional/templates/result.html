@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Text Classification</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <!-- Intro Paragraph -->
+    <div class="intro-container">
+        <h1 class="heading">🤖 Natural Language Processing</h1>
+        <p>
+            NLP is a field of Artificial Intelligence that helps machines understand, interpret, 
+            and generate human language. This demo showcases a multi-output text classification 
+            system that can identify emotions, violence-related content, and hate speech from input text.
+        </p>
+    </div>
+
+    <!-- Gap before main section -->
+    <div class="spacer"></div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <h2>Text Classification</h2>
+        <form method="post" action="/predict">
+            <textarea name="text" placeholder="Enter text here..." rows="10" cols="80"></textarea><br><br>
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if result %}
+            <h3 class="result">Result: {{ result }}</h3>
+        {% endif %}
+    </div>
+</body>
+</html>
+
