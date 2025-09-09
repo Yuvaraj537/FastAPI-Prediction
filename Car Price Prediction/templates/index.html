@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Price Prediction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center min-h-screen text-white">
+
+    <div class="bg-gray-900/80 backdrop-blur-md border border-gray-700 p-12 rounded-3xl shadow-2xl w-full max-w-4xl h-auto mx-4 sm:mx-auto">
+        <h1 class="text-4xl font-extrabold mb-10 text-center text-blue-400 drop-shadow-lg tracking-wide">
+            🚗 Car Price Prediction
+        </h1>
+
+        <form action="/predict" method="post" class="space-y-8">
+
+            <!-- Maker Year -->
+            <div class="flex flex-col">
+                <label class="text-blue-300 font-semibold mb-2">Maker Year:</label>
+                <input type="number" name="maker_year" required
+                       class="w-full px-5 py-4 border border-gray-600 rounded-xl bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <!-- Mileage -->
+            <div class="flex flex-col">
+                <label class="text-blue-300 font-semibold mb-2">Mileage (kmpl):</label>
+                <input type="number" step="0.1" name="mileage_kmpl" required
+                       class="w-full px-5 py-4 border border-gray-600 rounded-xl bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <!-- Engine -->
+            <div class="flex flex-col">
+                <label class="text-blue-300 font-semibold mb-2">Engine (CC):</label>
+                <input type="number" step="0.1" name="engine_cc" required
+                       class="w-full px-5 py-4 border border-gray-600 rounded-xl bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <!-- Fuel Type -->
+            <div class="flex flex-col">
+                <label class="text-blue-300 font-semibold mb-2">Fuel Type:</label>
+                <input type="text" name="fuel_type" required
+                       class="w-full px-5 py-4 border border-gray-600 rounded-xl bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <!-- Brand -->
+            <div class="flex flex-col">
+                <label class="text-blue-300 font-semibold mb-2">Brand:</label>
+                <input type="text" name="brand" required
+                       class="w-full px-5 py-4 border border-gray-600 rounded-xl bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <!-- Transmission -->
+            <div class="flex flex-col">
+                <label class="text-blue-300 font-semibold mb-2">Transmission:</label>
+                <input type="number"  step="0.1" name="transmission" required
+                       class="w-full px-5 py-4 border border-gray-600 rounded-xl bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            <!--service History-->
+            <div class = "flex flex-col">
+                <label class = "text-blue-300 font-semibold mb-2">Service History:</label>
+                <input type ="number" step="0.1" name="service_history" required
+                       class ="w-full px-5 py-4 border border-gray-600 rounded-x1 bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            
+            <!--Accident Reported-->
+            <div class = "flex flex-col">
+                <label class = "text-blue-300 font-semibold mb-2">Accidents Reports:</label>
+                <input type = "number" step="0.1" name="accidents_reported" required
+                       class = "w-full px-5 py-4 border border-gray-600 rounded-x1 bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <!--insurance valid-->
+            <div class = "flex flex-col">
+                <label class = "text-blue-300 font-semibold mb-2">Insurance Valid:</label>
+                <input type = "number" step="0.1" name="insurance_valid" required
+                       class = "w-full px-5 py-4 border border-gray-600 rounded-x1 bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <!--Buyer Type-->
+            <div class = "flex flex-col">
+                <label class = "text-blue-300 font-semibold mb-2">Buyer Type:</label>
+                <input type = "number" step="0.1" name="buyer_type" required
+                       class = "w-full px-5 py-4 border border-gray-600 rounded-x1 bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>        
+            <!--Button -->
+            <div class="flex justify-center">
+                <button type="submit"
+                        class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg hover:scale-105 hover:shadow-2xl transition transform duration-300 text-xl">
+                    🔮 Predict Price
+                </button>
+            </div>
+
+        </form>
+    </div>
+
+</body>
+</html>
